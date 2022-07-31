@@ -13,11 +13,15 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-
+Route::get("/registerpage",["as" => "registerpage" , "uses" => "AccountController@registerpage"]);//註冊頁面
+Route::post("/register",["as" => "register" , "uses" => "AccountController@register"]);//註冊函式
+Route::get("/loginpage",["as" => "loginpage", "uses" => "AccountController@loginpage"]);//登入頁面
+Route::post("/login",["as" => "login" , "uses" => "AccountController@login"]);//登入驗證
+Route::get("/logout",["as" => "logout" , "uses" => "AccountController@logout"]);//登出
 Route::get("/",["as" => "index", "uses" => "FeedbackController@index"]);//訪問入口
 Route::post("/store",["as" => "store", "uses" => "FeedbackController@store"]);//儲存留言
 Route::delete("/{id}",["as" => "destroy", "uses" => "FeedbackController@destroy"]);//刪除留言

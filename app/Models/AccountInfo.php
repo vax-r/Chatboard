@@ -6,23 +6,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Feedback extends Model
+class AccountInfo extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $table = "feedback";
-    protected $dates = ["deleted_at"];
-
-    protected $guarded = [
-        'id',
-        'deleted_at',
-        'created_at',
-        'updated_at'
-    ];
+    protected $table = "AccountInfo";
+    // protected $dates = ["deleted_at"];
 
     protected $fillable = [
+        'id',
         'user_name',
-        'title',
-        'content'
+        'password'
     ];
 }
+

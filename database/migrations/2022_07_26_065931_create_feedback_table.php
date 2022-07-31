@@ -17,7 +17,7 @@ class CreateFeedbackTable extends Migration
             $table->id();
             $table->timestamps();
 
-            $table->string("name",20)->nullable()->comment("user_name");//留言者名稱
+            $table->string("user_name")->comment("user_name");//留言者名稱
             $table->string("title")->nullable()->comment("title");//留言標題
             $table->text("content")->nullable()->comment("content");//留言內容
             
