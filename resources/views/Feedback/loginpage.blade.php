@@ -15,10 +15,36 @@
 
 <body>
     <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <h2 class="navbar-brand" href="/">留言板系統</h2>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{{ route('index') }}">首頁</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{{ route('registerpage') }}">註冊</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{{ route('loginpage') }}">登入</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
         <h2 class="text-center">留言板系統</h2>
         <h3><small class="text-muted">登入介面</small></h3>
         @if(Session::has("message"))
             <div class = "alert alert-success" role="alert">{{ Session::get("message") }}</div>
+        @endif
+
+        @if(Session::has("warning"))
+        <div class="alert alert-warning d-flex align-items-center" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                <div>{{ Session::get("warning")}}</div>
+        </div>
         @endif
         <br>
         <form action = " {{ route('login') }} " method="post">

@@ -14,6 +14,32 @@
 
 <body>
     <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <h2 class="navbar-brand" href="/">留言板系統</h2>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{{ route('index') }}">首頁</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{{ route('registerpage') }}">註冊</a>
+                            </li>
+                            @if(Session::has("user_name"))
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{{ route('logout') }}">登出</a>
+                            </li>
+                            @else
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{{ route('loginpage') }}">登入</a>
+                            </li>
+                            @endif
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+
         <h2 class="text-center">留言板系統</h2>
         <h3><small class="text-muted">註冊介面</small></h3>
         @if(Session::has("message"))

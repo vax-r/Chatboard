@@ -18,7 +18,26 @@
     </head>
     <body>
         <div class="container">
-            <h2 class="text-center">留言板系統</h2>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <h2 class="navbar-brand" href="/">留言板系統</h2>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{{ route('index') }}">首頁</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{{ route('registerpage') }}">註冊</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{{ route('logout') }}">登出</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <h2 class="text-center">留言板</h2>
             @if(Session::has("message"))
             <div class = "alert alert-success" role="alert">{{ Session::get("message") }}</div>
             @endif
@@ -38,7 +57,7 @@
             <form action="{{ route('store') }}" method="post">
                 @csrf
                 <div class="form-group">
-                    <label for="title">留言標題</label>
+                    <!-- <label for="title">留言標題</label> -->
                     <textarea class="form-control" name="content" rows="5" placeholder="在這裡輸入您的留言"></textarea>
 
                 </div>
@@ -52,7 +71,7 @@
                         <tr>
                             <th width="10">ID</th>
                             <th width="80">留言者</th>
-                            <th width="150">標題</th>
+                            <!-- <th width="150">標題</th> -->
                             <th>內容</th>
                             <th width="100">留言時間</th>
                             <th width="100">操作</th>
@@ -63,7 +82,7 @@
                     <tr>
                         <td>{{ $record->id }}</td>
                         <td>{{ $record->user_name }}</td>
-                        <td>{{ $record->title }}</td>
+                        <!-- <td>{{ $record->title }}</td> -->
                         <td>{{ $record->content }}</td>
                         <td>{{ $record->created_at }}</td>
                         <td>

@@ -53,4 +53,10 @@ class AccountController extends Controller
             return \Redirect::back()->with("message","註冊成功");
         }
     }
+
+    public function logout(){
+        session()->forget("user_name");
+        return redirect("/loginpage");
+        // return view("Feedback.loginpage");
+    }
 }

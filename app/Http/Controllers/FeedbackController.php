@@ -12,7 +12,7 @@ class FeedbackController extends Controller
 {
     public function index(){
         if(!session()->exists("user_name")){
-            return view("Feedback.loginpage");
+            return redirect("/loginpage")->with("warning","請先登入");
         }
         $user_name = session("user_name");
         $records = Feedback::orderby('id','DESC')->paginate(10);
@@ -40,12 +40,13 @@ class FeedbackController extends Controller
 
     public function update($id){
         $record = Feedback::find($id);
-        $record->user_name = Request::get("user_name");
+        $record->user_name = session("user_name");
         $record->title = Request::get("title");
         $record->content = Request::get("content");
 
         $record->save();
-        return \Redirect::back()->with("message","編輯成功!");
+        return redirect("/")->with("message","編輯成功");
+        // return \Redirect::back()->with("message","編輯成功!");
     }
 
     public function destroy($id){

@@ -14,23 +14,41 @@
     </head>
     <body>
         <div class="container">
-            <h4>編輯留言 <a href="{{ route('index') }}">返回留言</a></h4>
-            @if(Session::has("message"))
-            <div class="alert alert-success" role="alert">{{ Session::get("message") }}</div>
-            @endif
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <h2 class="navbar-brand" href="/">留言板系統</h2>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{{ route('index') }}">首頁</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{{ route('registerpage') }}">註冊</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{{ route('logout') }}">登出</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <h4 class = "text-center">編輯留言</h4>
             <br>
             <form action="{{ route('update', $record->id ) }}" method="post">
                 @csrf
                 @method("put")
                 <div class="form-group">
-                    <label for="name">您的姓名</label>
-                    <input type="text" name="name" class="form-control form-inline" id="name" placeholder="請輸入您的姓名" value="{{ $record->name }}">
+                    <label for="name">使用者</label>
+                    <div class="alert alert-info" role="alert">
+                        {{ Session::get("user_name") }}
+                    </div>
                 </div>
                 
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="title">留言標題</label>
                     <input type="text" class="form-control" name="title" id="title" placeholder="請輸入您的留言標題" value="{{ $record->title }}">
-                </div>
+                </div> -->
 
                 <div class="form-group">
                     <label for="content">留言內容</label>
