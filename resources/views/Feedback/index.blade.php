@@ -58,7 +58,7 @@
                 @csrf
                 <div class="form-group">
                     <!-- <label for="title">留言標題</label> -->
-                    <textarea class="form-control" name="content" rows="5" placeholder="在這裡輸入您的留言"></textarea>
+                    <textarea class="form-control" name="content" rows="5" placeholder="在這裡輸入您的留言" required></textarea>
 
                 </div>
             <br>
