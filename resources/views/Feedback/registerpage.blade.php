@@ -50,11 +50,11 @@
             @csrf
             <div class = "mb-3">
                 <label for="user_name" class="form-label">User Name <small class="text-muted">(allow only numbers & english letters, maximum length is 15)</small></label>
-                <input type = "user_name" class="form-control" name="user_name" id="user_name" placeholder="please enter your user name" pattern="[a-zA-Z0-9]" max-length="15" required>
+                <input type = "user_name" class="form-control" name="user_name" id="user_name" placeholder="please enter your user name" pattern="[a-zA-Z0-9]+" max-length="15" required>
             </div>
             <div class = "mb-3">
                 <label for="password" class="form-label">Password <small class="text-muted">(allow only numbers & english letters)</small></label>
-                <input type = "password" class="form-control" name="password" id="password" placeholder="please enter your password" pattern="[a-zA-Z0-9]" required>
+                <input type = "password" class="form-control" name="password" id="password" placeholder="please enter your password" pattern="[a-zA-Z0-9]+" required>
             </div>
             <br>
             <button type="submit" class="btn btn-primary">註冊</button>
