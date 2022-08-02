@@ -22,6 +22,8 @@ class AccountController extends Controller
 
         if(!isset($userData[0]->user_name)){
             return \Redirect::back()->with("message","使用者不存在");
+        }elseif($userData[0]->violate_count>=3){
+            return \Redirect::back()->with("warning","使用者已遭停權");
         }elseif(password_verify($password, $userData[0]->password)){
             session(["user_name" => $userData[0]->user_name]);
             return redirect("/");
@@ -49,6 +51,7 @@ class AccountController extends Controller
             AccountInfo::create([
                 "user_name" => $user_name,
                 "password" => $hashed_password,
+                "violate_count" => 0,
             ]);
             return \Redirect::back()->with("message","註冊成功");
         }

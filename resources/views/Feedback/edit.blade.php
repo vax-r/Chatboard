@@ -35,6 +35,11 @@
 
             <h4 class = "text-center">編輯留言</h4>
             <br>
+            @if(Session::has("alert"))
+            <script>
+                alert("{{ session()->get('alert') }}");
+            </script>
+            @endif
             <form action="{{ route('update', $record->id ) }}" method="post">
                 @csrf
                 @method("put")
