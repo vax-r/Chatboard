@@ -80,7 +80,7 @@
                 <tbody>
                 @forelse($records as $record)
                     <tr>
-                        <td>{{ $record->id }}</td>
+                        <td>{{ $loop->iteration }}</td>
                         <td>{{ $record->user_name }}</td>
                         <!-- <td>{{ $record->title }}</td> -->
                         <td>{{ $record->content }}</td>
