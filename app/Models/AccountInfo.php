@@ -9,14 +9,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class AccountInfo extends Model
 {
     use HasFactory;
-    use SoftDeletes;
+    // use SoftDeletes;
     protected $table = "AccountInfo";
     // protected $dates = ["deleted_at"];
 
     protected $fillable = [
         'id',
         'user_name',
-        'password'
+        'password',
+        'violate_count'
     ];
 }
 

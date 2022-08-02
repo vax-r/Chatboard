@@ -19,6 +19,7 @@ class CreateAccountInfoTable extends Migration
 
             $table->string("user_name",20)->unique()->comment("帳號");
             $table->string("password")->comment("密碼");
+            $table->integer("violate_count")->comment("違規次數");
         });
     }
 

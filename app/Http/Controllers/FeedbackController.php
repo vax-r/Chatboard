@@ -7,6 +7,7 @@ use Request;
 use DB;
 // use Session;
 use App\Models\Feedback;
+use App\Models\AccountInfo;
 
 class FeedbackController extends Controller
 {
@@ -21,6 +22,17 @@ class FeedbackController extends Controller
 
     public function store(){
         $user_name = session("user_name");
+        $content_str = Request::get("content");
+        if(strpos($content_str, ";")){
+            $user = AccountInfo::where("user_name",$user_name)->first();
+            $user->violate_count +=1;
+            $user->save();
+            if($user->violate_count>=3){
+                session()->forget("user_name");
+                return redirect("/loginpage")->with("warning","違規留言三次以上，您的帳號已遭停權");
+            }
+            return \Redirect::back()->with("alert","禁止輸入違規語句, 違規三次您的帳號將遭停權");
+        }
         Feedback::create([
             "user_name" => session("user_name"),
             "title" => Request::get("title"),
@@ -43,7 +55,16 @@ class FeedbackController extends Controller
         $record->user_name = session("user_name");
         $record->title = Request::get("title");
         $record->content = Request::get("content");
-
+        if(strpos($record->content, ";")){
+            $user = AccountInfo::where("user_name",$record->user_name)->first();
+            $user->violate_count +=1;
+            $user->save();
+            if($user->violate_count>=3){
+                session()->forget("user_name");
+                return redirect("/loginpage")->with("warning","違規留言三次以上，您的帳號已遭停權");
+            }
+            return \Redirect::back()->with("alert","禁止輸入違規語句, 違規三次您的帳號將遭停權");
+        }
         $record->save();
         return redirect("/")->with("message","編輯成功");
         // return \Redirect::back()->with("message","編輯成功!");
