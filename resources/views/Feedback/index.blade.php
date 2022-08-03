@@ -14,6 +14,7 @@
                 float: right;
                 margin-top: 10px;
             }
+            .warp{white-space:normal;word-wrap:break-word;word-break:break-all;}
         </style>
     </head>
     <body>
@@ -72,7 +73,7 @@
                             <th width="10">ID</th>
                             <th width="80">留言者</th>
                             <!-- <th width="150">標題</th> -->
-                            <th>內容</th>
+                            <th width="2000">內容</th>
                             <th width="100">留言時間</th>
                             <th width="100">操作</th>
                         </tr>
@@ -83,7 +84,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $record->user_name }}</td>
                         <!-- <td>{{ $record->title }}</td> -->
-                        <td>{{ $record->content }}</td>
+                        <td class="warp">{{ $record->content }}</td>
                         <td>{{ $record->created_at }}</td>
                         <td>
                             <a href="{{ route('edit', $record->id) }}" class="btn btn-primary">編輯</a>

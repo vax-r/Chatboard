@@ -23,7 +23,7 @@ class FeedbackController extends Controller
     public function store(){
         $user_name = session("user_name");
         $content_str = Request::get("content");
-        if(strpos($content_str, ";")){
+        if(strpos($content_str, ";") || stripos($content_str, "<script>")!==false){
             $user = AccountInfo::where("user_name",$user_name)->first();
             $user->violate_count +=1;
             $user->save();
@@ -55,7 +55,7 @@ class FeedbackController extends Controller
         $record->user_name = session("user_name");
         $record->title = Request::get("title");
         $record->content = Request::get("content");
-        if(strpos($record->content, ";")){
+        if(strpos($record->content, ";") || stripos($content_str, "<script>")!==false){
             $user = AccountInfo::where("user_name",$record->user_name)->first();
             $user->violate_count +=1;
             $user->save();
